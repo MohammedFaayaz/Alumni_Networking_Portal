@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Student</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .container {
+            max-width: 500px;
+            margin-top: 60px;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0px 0px 15px rgba(0,0,0,0.1);
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #007bff;
+        }
+        .btn-primary {
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Add Student</h2>
+        <form action="/addstudent" method="POST">
+            <div class="form-group">
+                <label for="name">Full Name</label>
+                <input type="text" class="form-control" name="name" id="name" placeholder="Enter full name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Student Email</label>
+                <input type="email" class="form-control" name="email" id="email" placeholder="example@student.tce.edu" required>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" class="form-control" name="password" id="password" placeholder="Enter password" required>
+            </div>
+
+            <div class="form-group">
+                <label for="department">Department</label>
+                <input type="text" class="form-control" name="department" id="department" placeholder="e.g. CSE" required>
+            </div>
+
+            <div class="form-group">
+                <label for="year">Year</label>
+                <input type="number" class="form-control" name="year" id="year" placeholder="e.g. 2" required>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Add Student</button>
+        </form>
+    </div>
+
+</body>
+</html>

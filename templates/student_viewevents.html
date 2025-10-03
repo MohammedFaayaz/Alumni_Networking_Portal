@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Events</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .container {
+            margin-top: 50px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+        }
+
+        .results-header {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #0f0f0ee7;
+        }
+
+        .results-header h2 {
+            font-size: 2.5rem;
+            font-weight: bold;
+        }
+
+        .table th {
+            background-color: #1B3B5F;
+            color: #fff;
+        }
+
+        .btn-primary {
+            background-color: #1B3B5F;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background-color: #0d2a46;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <nav class="navbar navbar-expand-lg shadow-xl" style="background-color: #1B3B5F;">
+        <div class="container-fluid">
+            <!-- Brand -->
+            <a class="navbar-brand" style="color: #FDF5E6; padding: 10px 20px; font-family: 'Roboto', sans-serif;"
+               href="{{ url_for('studentprofile') }}">
+                Alumni Network
+                <img src="{{ url_for('static', filename='images/images.jpeg') }}" alt="Logo"
+                     style="width: 55px; height: 55px; margin-left: 8px; border-radius: 50%; object-fit: cover;">
+            </a>
+
+            <!-- Toggle -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Links -->
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" style="color: #FDF5E6;" href="{{ url_for('studentprofile') }}">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" style="color: #FDF5E6;" href="{{ url_for('student_viewevents') }}">View Events</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" style="color: #FDF5E6;" href="{{ url_for('student_viewjobs') }}">View Jobs</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" style="color: #FDF5E6;" href="{{ url_for('studentlogout') }}">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<!-- Content -->
+<div class="container">
+    <div class="results-header">
+        <h2>Upcoming Events</h2>
+    </div>
+
+    {% if events_list %}
+    <table class="table table-striped mt-3">
+        <thead>
+        <tr>
+            <th>Event Name</th>
+            <th>Date</th>
+            <th>Description</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for event in events_list %}
+        <tr>
+            <td>{{ event.event_name }}</td>
+            <td>{{ event.event_date }}</td>
+            <td>{{ event.event_desc }}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p class="text-center text-muted">No events available at the moment.</p>
+    {% endif %}
+
+    <a href="{{ url_for('studentprofile') }}" class="btn btn-primary mt-3">Back to Dashboard</a>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

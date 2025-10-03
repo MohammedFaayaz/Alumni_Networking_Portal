@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alumni Search</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <!-- Custom CSS -->
+    <style>
+        
+        /* Section Background */
+        .section-bg {
+            background-color: #f0f8ff;
+            min-height: 100vh;
+            padding-top: 50px;
+        }
+
+        /* Section Title */
+        .section-title {
+            color: #343a40;
+            font-weight: bold;
+            text-transform: uppercase;
+            position: relative;
+            animation: fadeInDown 1s ease-out;
+        }
+
+        /* Search Form Styling */
+        .search-form {
+            background-color: #ffff;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-field {
+            border-radius: 50px;
+            padding: 10px 15px;
+            border: 1px solid #ddd;
+            transition: box-shadow 0.3s ease;
+        }
+
+        .form-field:focus {
+            box-shadow: 0 0 10px rgba(50, 115, 220, 0.5);
+        }
+
+        .search-btn {
+            background-image: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            border: none;
+            border-radius: 50px;
+            padding: 10px 30px;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .search-btn:hover {
+            transform: translateY(-5px);
+            background-image: linear-gradient(135deg, #2575fc 0%, #6a11cb 100%);
+        }
+
+        .alumni-card {
+            background-color: #fff;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .alumni-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Fade-in animation */
+        @keyframes fadeInDown {
+            0% {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .search-form {
+            animation: fadeInUp 1s ease-out;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg  bg-#1B3B5F shadow-xl" style="background-color: #1B3B5F ;">
+      <div class="container-fluid">
+          <!-- Brand -->
+          <a class="navbar-brand text-4xl font-bold "style="color: #FDF5E6; padding: 10px 20px; font-family: 'Roboto', sans-serif;" href="{{ url_for('login') }}">   Alumni <span style="margin-left: 5px; margin-left: 10px;">Network</span> <img src="{{ url_for('static',filename='images/images.jpeg')}}" alt="Custom Icon" 
+            style="width: 55px; height: 55px; margin-left: 8px; border-radius: 50%; display: inline-block; object-fit: cover;"></a>
+  
+  
+          <!-- Toggle button for mobile view -->
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+              aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+          </button>
+  
+          <!-- Navbar Links -->
+          <div class="collapse navbar-collapse" id="navbarNav" >
+              <ul class="navbar-nav ms-auto flex items-center space-x-8">
+                  <li class="nav-item">
+                      <a class="nav-link text-lg text-gray-600 hover:text-teal-500 transition duration-300" style="color: #FDF5E6;" href="{{  url_for('index')  }}">Home</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link text-lg text-gray-600 hover:text-teal-500 transition duration-300" style="color: #FDF5E6;"href="{{  url_for('profile')  }}">Profile</a>
+                  </li>
+                
+           
+                
+                  <li class="nav-item">
+                      <a class="nav-link text-lg text-gray-600 hover:text-teal-500 transition duration-300" style="color: #FDF5E6;"href="{{  url_for('contact')  }}">Contact</a>
+                  </li>
+                  <form class="d-flex align-items-center">
+                      <input class="form-control me-2 rounded-full" type="search" placeholder="Search" aria-label="Search" />
+                      <button class="btn btn-outline-teal-500" type="submit">
+                          <i class="fas fa-search" style="color: #FDF5E6;"></i>
+                      </button>
+                  </form>
+              </ul>
+          </div>
+      </div>
+  </nav>
+      </header>
+
+    <!-- Main Section -->
+    <section id="search-alumni" class="section-bg">
+        <div class="container">
+            <h2 class="section-title text-center mb-4">Search Alumni</h2>
+
+            <!-- Search Form -->
+            <form action="{{ url_for('search') }}" method="POST" class="search-form mb-5" id="searchForm">
+                <div class="row justify-content-center">
+                    
+                    <div class="col-xs-12 col-md-4 mb-3">
+                        <input type="text" id="Name" name="Name" class="form-control form-field shadow-sm" placeholder="Name">
+                    </div>
+                    
+                    <div class="col-xs-12 col-md-4 mb-3">
+                        <input type="text" id="Location" name="Location" class="form-control form-field shadow-sm" placeholder="Location">
+                    </div>
+                    <div class="col-xs-12 col-md-4 mb-3"> 
+                        <input type="text" id="searchGradYear" name="company" class="form-control form-field shadow-sm" placeholder="Company"> 
+                    </div>
+                    <div class="col-xs-12 col-md-4 mb-3"> 
+                        <input type="text" id="grad_yr" name="grad_yr" class="form-control form-field shadow-sm" placeholder="Graduation year"> 
+                    </div>
+                    
+                    <div class="col-xs-12 text-center">
+                        
+                        <button type="submit" class="btn btn-primary search-btn ">Search Alumni</button>
+                        
+                    </div>
+                </div>
+            </form>
+            <!-- Alumni Cards -->
+            <div class="row" id="alumniCards">
+                <div class="col-md-4 mb-4" data-name="Fayaz" data-job="Software Engineer" data-location="Banglore" data-year="2020" data-salary="70000">
+                    <div class="alumni-card shadow-sm">
+                        <h5>Fayaz</h5>
+                        <p><strong>Profession:</strong> Software Engineer</p>
+                        <p><strong>Location:</strong> Banglore</p>
+                        <p><strong>Graduation Year:</strong> 2020</p>
+                        <p><strong>Salary:</strong> 70,000</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4" data-name="Meaneshwaran" data-job="Data Scientist" data-location="Chennai" data-year="2018" data-salary="85000">
+                    <div class="alumni-card shadow-sm">
+                        <h5>Meaneshwaran</h5>
+                        <p><strong>Profession:</strong> Data Scientist</p>
+                        <p><strong>Location:</strong> Chennai</p>
+                        <p><strong>Graduation Year:</strong> 2018</p>
+                        <p><strong>Salary:</strong> 85,000</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4" data-name="Aditi" data-job="Marketing Manager" data-location="Delhi" data-year="2015" data-salary="60000">
+                    <div class="alumni-card shadow-sm">
+                        <h5>Naka</h5>
+                        <p><strong>Profession:</strong> Marketing Manager</p>
+                        <p><strong>Location:</strong> Delhi</p>
+                        <p><strong>Graduation Year:</strong> 2015</p>
+                        <p><strong>Salary:</strong> 60,000</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 text-center">
+            <a href="{{  url_for('displayall')   }}">           
+            <button type="button" class="btn btn-primary search-btn">DIsplay Alumni</button>
+            </a>
+        </div>
+
+    </section>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+    <!--  JavaScript -->
+    <script>
+        function searchAlumni() {
+            const searchName = document.getElementById("searchName").value.toLowerCase();
+            const searchJob = document.getElementById("searchJob").value.toLowerCase();
+            const searchLocation = document.getElementById("searchLocation").value.toLowerCase();
+            const searchSalary = document.getElementById("searchSalary").value.toLowerCase();
+
+            const alumniCards = document.querySelectorAll("#alumniCards .col-md-4");
+
+            alumniCards.forEach(function(card) {
+                const name = card.getAttribute("data-name").toLowerCase();
+                const job = card.getAttribute("data-job").toLowerCase();
+                const location = card.getAttribute("data-location").toLowerCase();
+                const salary = card.getAttribute("data-salary").toLowerCase();
+
+                if (
+                    (searchName === "" || name.includes(searchName)) &&
+                    (searchJob === "" || job.includes(searchJob)) &&
+                    (searchLocation === "" || location.includes(searchLocation)) &&
+                    (searchSalary === "" || salary.includes(searchSalary))
+                ) {
+                    card.style.display = "block";
+                } else {
+                    card.style.display = "none";
+                }
+            });
+
+        }
+    
+    </script>
+</body>
+
+</html>

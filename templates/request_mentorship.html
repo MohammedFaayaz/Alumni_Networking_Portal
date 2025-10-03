@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Request Mentorship</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #FDF5E6;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        /* Navbar Styling */
+        .navbar {
+            background-color: #1B3B5F;
+        }
+        .navbar-brand {
+            color: #FDF5E6 !important;
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+        .navbar-brand img {
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        .navbar-nav .nav-link {
+            color: #FDF5E6 !important;
+            transition: color 0.3s ease;
+        }
+        .navbar-nav .nav-link:hover {
+            color: #1de9b6 !important;
+        }
+
+        /* Form Card */
+        .card {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            color: #1B3B5F;
+            font-weight: bold;
+        }
+
+        .btn-success {
+            background-color: #1B3B5F;
+            border-color: #1B3B5F;
+        }
+        .btn-success:hover {
+            background-color: #145086;
+            border-color: #145086;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container">
+        <a class="navbar-brand" href="{{ url_for('index') }}">
+            Alumni Network
+            <img src="{{ url_for('static', filename='images/images.jpeg') }}" alt="Logo" width="45" height="45">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item"><a class="nav-link" href="{{ url_for('index') }}">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ url_for('view_mentors') }}">Mentors</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ url_for('studentprofile') }}">Profile</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ url_for('contact') }}">Contact</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Request Form -->
+<div class="container mt-5">
+    <div class="card mx-auto" style="max-width: 600px;">
+        <h2 class="mb-4">Request Mentorship with {{ mentor.name }}</h2>
+        <form method="POST">
+            <div class="form-group">
+                <label>Your Name</label>
+                <input type="text" name="student_name" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label>Your Email</label>
+                <input type="email" name="student_email" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label>Topic</label>
+                <input type="text" name="topic" class="form-control" placeholder="e.g. Career Advice" required>
+            </div>
+            <div class="form-group">
+                <label>Preferred Date</label>
+                <input type="date" name="preferred_date" class="form-control" required>
+            </div>
+            <button type="submit" class="btn btn-success btn-block">Send Request</button>
+        </form>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

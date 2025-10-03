@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for('static',filename='css/style.css')}}">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>      
+    <title>Main Page - Alumni Portal</title>
+    <style>
+        /* Top-right student button styling */
+        .top-buttons {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+        }
+        .top-buttons a {
+            padding: 8px 15px;
+            background-color: #615ce7;
+            color: white;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background 0.3s ease;
+        }
+        .top-buttons a:hover {
+            background-color: #6b6fe0;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Student button in the top right corner -->
+    <div class="top-buttons">
+        <a href="{{ url_for('studentlogin') }}">Student</a>
+    </div>
+
+    <div class="container" id="container">
+        <div class="form-container sign-up">
+            <form>
+                <h1>Welcome to Our Network</h1>
+                <div class="social-icons">
+                    <a href="#" class="icons"><i class='bx bxl-google'></i></a>
+                    <a href="#" class="icons"><i class='bx bxl-facebook'></i></a>
+                    <a href="#" class="icons"><i class='bx bxl-github'></i></a>
+                    <a href="#" class="icons"><i class='bx bxl-linkedin'></i></a>
+                </div>
+                <span>Register with E-mail</span>
+                <input type="text" placeholder="Name">
+                <input type="email" placeholder="Enter E-mail">
+                <input type="password" placeholder="Enter Password">
+                <a href="{{ url_for('addalumini') }}">
+                    <button type="button">Sign Up</button>
+                </a>
+            </form>
+        </div>
+
+        <div class="form-container sign-in">
+            <form action="{{ url_for('loginn') }}" method="POST">
+                <h1>Welcome Alumni!</h1>
+                <div class="social-icons">
+                    <a href="#" class="icons"><i class='bx bxl-google'></i></a>
+                    <a href="#" class="icons"><i class='bx bxl-facebook'></i></a>
+                    <a href="#" class="icons"><i class='bx bxl-github'></i></a>
+                    <a href="#" class="icons"><i class='bx bxl-linkedin'></i></a>
+                </div>
+                <span>Login With Email & Password</span>
+                <input type="email" name="email" placeholder="Enter E-mail">
+                <input type="password" placeholder="Enter Password">
+                <a href="">Forget Password?</a>
+                <button type="submit">Sign In</button>
+            </form>
+        </div>
+
+        <div class="toggle-container">
+            <div class="toggle">
+                <div class="toggle-panel toggle-left">
+                    <h1>Start Explore</h1>
+                    <p>Your details may help students explore</p>
+                    <button class="hidden" id="login"><----</button>
+                </div>
+                <div class="toggle-panel toggle-right">
+                    <h1>Create Account</h1>
+                    <p>Click to search your Preferred Alumni</p>
+                    <button class="hidden" id="register">----></button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

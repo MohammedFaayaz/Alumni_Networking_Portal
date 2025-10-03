@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+  <style>
+    body {
+      background-color: #f5f6fa;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    
+    /* Header Section */
+    .contact-header {
+      background-color: #FDF5E6;
+      color: white;
+      text-align: center;
+      padding: 50px 0;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .contact-header h1 {
+      font-size: 2.5rem;
+      animation: fadeInDown 1s ease;
+      color:#1B3B5F;
+    }
+
+    .contact-header p {
+      font-size: 1.25rem;
+      animation: fadeInUp 1s ease;
+      color:#1B3B5F;
+    }
+
+    /* Form Section */
+    .contact-form {
+      padding: 50px;
+      background-color: #dfe6e9;
+      border-radius: 20px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-control {
+      border-radius: 30px;
+      background-color: #f1f2f6;
+      padding: 15px;
+      margin-bottom: 20px;
+    }
+
+    .form-control:focus {
+      box-shadow: 0 0 10px rgba(0, 206, 201, 0.5);
+      border-color: #00cec9;
+    }
+
+    .btn-submit {
+      background-color: #1B3B5F;
+      border-radius: 30px;
+      padding: 10px 30px;
+      color: white;
+      transition: background-color 0.3s ease;
+    }
+
+    .btn-submit:hover {
+      background-color: #00b894;
+    }
+
+    /* Address Section */
+    .address {
+      margin-top: 40px;
+    }
+
+    .address-box {
+      background-color: #dfe6e9;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .address-box h5 {
+      font-weight: bold;
+      margin-bottom: 15px;
+    }
+
+    /* Social Icons */
+    .social-icons a {
+      margin: 0 10px;
+      color: #636e72;
+      font-size: 1.5rem;
+      transition: color 0.3s ease, transform 0.3s ease;
+    }
+
+    .social-icons a:hover {
+      color: #00cec9;
+      transform: scale(1.2);
+    }
+
+    footer {
+        background-color: #343a40;
+        color: white;
+        padding: 20px 0;
+        text-align: center;
+      }
+
+      .footer a {
+        color: #1de9b6;
+        text-decoration: none;
+      }
+
+      .footer a:hover {
+        color: #1dc4e9;
+      }
+
+
+    /* Animations */
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <nav class="navbar navbar-expand-lg  bg-#1B3B5F shadow-xl" style="background-color: #1B3B5F ;">
+  <div class="container-fluid">
+      <!-- Brand -->
+      <a class="navbar-brand text-4xl font-bold "style="color: #FDF5E6; padding: 10px 20px; font-family: 'Roboto', sans-serif;" href="login.html">   Alumni <span style="margin-left: 5px; margin-left: 10px;">Network</span> <img src="{{ url_for('static',filename='images/images.jpeg')}}" alt="Custom Icon"
+        style="width: 55px; height: 55px; margin-left: 8px; border-radius: 50%; display: inline-block; object-fit: cover;"></a>
+
+    
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <!-- Navbar Links -->
+      <div class="collapse navbar-collapse" id="navbarNav" >
+          <ul class="navbar-nav ms-auto flex items-center space-x-8">
+              <li class="nav-item">
+                  <a class="nav-link text-lg text-gray-600 hover:text-teal-500 transition duration-300" style="color: #FDF5E6;" href="{{  url_for('index')   }}">Home</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link text-lg text-gray-600 hover:text-teal-500 transition duration-300" style="color: #FDF5E6;"href="{{  url_for('profile')   }}">Profile</a>
+              </li>
+              
+              <li class="nav-item">
+                  <a class="nav-link text-lg text-gray-600 hover:text-teal-500 transition duration-300" style="color: #FDF5E6;"href="{{  url_for('contact')   }}">Contact</a>
+              </li>
+              <form class="d-flex align-items-center">
+                  <input class="form-control me-2 rounded-full" type="search" placeholder="Search" aria-label="Search" />
+                  <button class="btn btn-outline-teal-500" type="submit">
+                      <i class="fas fa-search" style="color: #FDF5E6;"></i>
+                  </button>
+              </form>
+          </ul>
+      </div>
+  </div>
+</nav>
+  </header>
+
+<!-- Contact Header Section -->
+<header class="contact-header">
+  <h1 class="animate_animated animate_fadeInDown">Explore More Alumni's</h1>
+  <p class="animate_animated animate_fadeInUp">We would love to hear from you! Please fill out the form below.</p>
+</header>
+
+<!-- Contact Form Section -->
+<div class="container my-5">
+  <div class="row">
+
+    <div class="col-md-6">
+      <div class="contact-form">
+        <h3 class="mb-4">Contact Us</h3>
+        <form>
+          <div class="form-group">
+            <input type="text" class="form-control" id="name" placeholder="Your Name">
+          </div>
+          <div class="form-group">
+            <input type="email" class="form-control" id="email" placeholder="Your Email">
+          </div>
+          <div class="form-group">
+            <textarea class="form-control" id="message" rows="5" placeholder="Your Message"></textarea>
+          </div>
+          <button type="submit" class="btn btn-submit">Send Message</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Address Column -->
+    <div class="col-md-6">
+      <div class="address-box">
+        <h5>Our Address</h5>
+        <p>TCE Alumni Avenue<br>Madurai, India</p>
+
+        <h5>Email</h5>
+        <p>TCE@alumninetwork.com</p>
+
+        <h5>Phone</h5>
+        <p>+1 123 456 7890</p>
+
+        <div class="social-icons">
+          <h5>Follow Us</h5>
+          <a href="#"><i class="fab fa-facebook"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-linkedin"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p>
+      &copy; 2024 Alumni Networking Platform. All Rights Reserved. |
+      <a href="#">Privacy Policy</a>
+    </p>
+    <a href="#" class="icons"><i class="bx bxl-google"></i></a>
+    <a href="#" class="icons"><i class="bx bxl-facebook"></i></a>
+    <a href="#" class="icons"><i class="bx bxl-github"></i></a>
+    <a href="#" class="icons"><i class="bx bxl-linkedin"></i></a>
+  </div>
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://kit.fontawesome.com/a076d05399.js"></script>
+</body>
+</html>

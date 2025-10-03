@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Job Opportunities</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f8f9fa;
+        }
+        .container {
+            margin-top: 50px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            padding: 20px;
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 25px;
+            color: #007bff;
+            font-weight: bold;
+        }
+        table th {
+            background-color: #1B3B5F;
+            color: white;
+        }
+        table td {
+            vertical-align: middle;
+        }
+        .form-inline input {
+            flex: 1;
+            min-width: 200px;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<header>
+    <nav class="navbar navbar-expand-lg" style="background-color: #1B3B5F;">
+        <div class="container-fluid">
+            <a class="navbar-brand" style="color: #FDF5E6; padding: 10px 20px; font-weight: bold; font-family: 'Roboto', sans-serif;" href="{{ url_for('login') }}">
+                Alumni <span style="margin-left: 5px;">Network</span>
+                <img src="{{ url_for('static', filename='images/images.jpeg') }}" alt="Custom Icon" 
+                     style="width: 55px; height: 55px; margin-left: 8px; border-radius: 50%; object-fit: cover;">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" style="color: #FDF5E6;" href="{{ url_for('index') }}">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" style="color: #FDF5E6;" href="{{ url_for('studentprofile') }}">Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" style="color: #FDF5E6;" href="{{ url_for('contact') }}">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<!-- Job Opportunities Content -->
+<div class="container">
+    <h2>Job Opportunities</h2>
+
+    <!-- Search Form -->
+    <form method="POST" class="form-inline my-3">
+        <input type="text" name="search_role" class="form-control mr-2" placeholder="Search by Role" value="{{ search_role }}">
+        <button type="submit" class="btn btn-primary">Search</button>
+    </form>
+
+    <!-- Jobs Table -->
+    <table class="table table-striped mt-3">
+        <thead>
+            <tr>
+                <th>Job Title</th>
+                <th>Company</th>
+                <th>Location</th>
+                <th>Role</th>
+                <th>Description</th>
+                <th>Apply Link</th>
+                <th>Contact</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for job in jobs %}
+            <tr>
+                <td>{{ job.job_title }}</td>
+                <td>{{ job.company_name }}</td>
+                <td>{{ job.location }}</td>
+                <td>{{ job.job_role }}</td>
+                <td>{{ job.description }}</td>
+                <td><a href="{{ job.application_link }}" target="_blank">Apply</a></td>
+                <td>{{ job.contact_email }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ url_for('studentprofile') }}" class="btn btn-primary mt-3">Back to Dashboard</a>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>

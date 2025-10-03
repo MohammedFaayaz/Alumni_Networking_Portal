@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User Dashboard</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        background-color: #FDF5E6; 
+        font-family: "Poppins", sans-serif;
+      }
+
+      /* Sidebar */
+      .sidebar {
+        background-color: #1B3B5F ;
+        height: 100vh;
+        position: fixed;
+        padding-top: 30px;
+        width: 220px;
+        transition: all 0.4s ease-in-out;
+      }
+
+      .sidebar h4 {
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        font-weight: bold;
+        color: #dfe6e9;
+        text-align: center;
+        margin-bottom: 30px;
+        animation: bounceInDown 1s ease-in-out;
+      }
+
+      .sidebar a {
+        color: #FDF5E6;
+        padding: 15px 20px;
+        display: block;
+        font-size: 16px;
+        transition: background 0.3s ease-in-out, transform 0.3s ease-in-out;
+      }
+
+      .sidebar a:hover {
+        background-color: #00cec9;
+        color: #ffffff;
+        transform: translateX(10px);
+        border-radius: 10px;
+      }
+
+      /* Main Content */
+      .main-content {
+        margin-left: 220px;
+        padding: 30px;
+        animation: fadeIn 1s ease-in-out;
+        
+      }
+
+      h2,
+      h4 {
+        color: #FDF5E6;
+      }
+
+      /* Profile Card */
+      .profile-card {
+        background: linear-gradient(135deg, #f5f6fa, #dcdde1);
+        border-radius: 15px;
+        padding: 20px;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+        transition: transform 0.4s ease, box-shadow 0.4s ease;
+      }
+
+      .profile-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
+      }
+
+      .profile-card h4 {
+        color: #636e72;
+        font-size: 1.2rem;
+      }
+
+      /* Button Styling */
+      .btn-primary {
+        background-image: linear-gradient(45deg, #6c5ce7, #00cec9);
+        border: none;
+        border-radius: 50px;
+        padding: 12px 25px;
+        font-size: 16px;
+        transition: transform 0.3s ease, background 0.3s ease;
+      }
+
+      .btn-primary:hover {
+        background-image: linear-gradient(45deg, #00cec9, #6c5ce7);
+        transform: scale(1.05);
+      }
+
+      /* Modal Customizations */
+      .modal-content {
+        border-radius: 15px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+      }
+
+    
+      .fade-in {
+        animation: fadeInAnimation 1s ease-in-out;
+      }
+
+      @keyframes fadeInAnimation {
+        0% {
+          opacity: 0;
+          transform: translateY(50px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* Sidebar Entrance Animation */
+      @keyframes bounceInDown {
+        0% {
+          opacity: 0;
+          transform: translateY(-50px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* General fade-in animation */
+      @keyframes fadeIn {
+        0% {
+          opacity: 0;
+        }
+        100% {
+          opacity: 1;
+        }
+      }
+
+      
+      #aboutMe {
+        color: #2f3640;
+        font-size: 1rem;
+        line-height: 1.6;
+        transition: color 0.3s ease;
+      }
+
+      #aboutMe:hover {
+        color: #6c5ce7;
+      }
+    </style>
+  </head>
+  <body>
+    
+   <div class="sidebar">
+  <h4 class="animate_animated animate_bounceInDown">User Dashboard</h4>
+  <a href="{{ url_for('profile') }}">Profile</a>
+  <a href="{{ url_for('searchalumini') }}">Search Alumni</a>
+  <a href="{{ url_for('addevents') }}">Add Events</a>
+  <a href="{{ url_for('viewevents') }}">View Events</a>
+
+  <!-- New Job Feature Links -->
+  <a href="{{ url_for('addjob') }}">Add Job Opportunity</a>
+  <a href="{{ url_for('viewjobs') }}">View Job Opportunities</a>
+  <a href="{{ url_for('register_mentor') }}">Register as Mentor</a>
+  
+
+
+  <a href="{{ url_for('contact') }}">Contact Us</a>
+  <a href="{{ url_for('index') }}">Logout</a>
+</div>
+    <div class="main-content">
+      <h2 class="animate_animated animate_fadeInLeft" style="color: #1B3B5F;">Profile Details</h2>
+<br><br>
+      <div class="profile-card fade-in" style="color:#433a74">
+    <div class="container">
+      
+  
+      {% if message %}
+          <p>{{ message }}</p>
+      {% endif %}
+  
+      {% if alumni_results %}
+          <table class="table table-striped mt-3">
+              
+              <tbody>
+                  {% for alumni in alumni_results %}
+                  <h3 >{{ alumni.name }}</h3>                  
+                    <p><strong>Mail Address:</strong> {{ alumni.email }}</p>
+                    <p><strong>Graduated Year:</strong> {{ alumni.grad_yr }}</p>
+                    <p><strong>Company:</strong> {{ alumni.company }}</p>
+                    <p><strong>Job Title:</strong> {{ alumni.job_title }}</p>
+                    <p><strong>Location:</strong> {{ alumni.location }}</p>
+              
+                  {% endfor %}
+              </tbody>
+          </table>
+      {% else %}
+          <p>No alumni profiles to display.</p>
+      {% endif %}
+  </div>
+  </div></div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  </body>
+</html>

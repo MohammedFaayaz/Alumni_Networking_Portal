@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Opportunities</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        body {
+            background-color: #FDF5E6;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .container {
+            margin-top: 50px;
+            background: #FDF5E6;
+            border-radius: 15px;
+            padding: 20px;
+        }
+
+        .results-header {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #0f0f0ee7;
+        }
+
+        .results-header h2 {
+            font-size: 2.5rem;
+            font-weight: bold;
+        }
+
+        .job-card {
+            background-color: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+            margin-bottom: 20px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .job-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .job-card h3 {
+            color: #007bff;
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+        }
+
+        .job-card p {
+            font-size: 1rem;
+            margin-bottom: 10px;
+        }
+
+        .no-results {
+            text-align: center;
+            color: #333;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg" style="background-color: #1B3B5F;">
+            <div class="container-fluid">
+                <a class="navbar-brand text-4xl font-bold" style="color: #FDF5E6; padding: 10px 20px; font-family: 'Roboto', sans-serif;"
+                    href="{{ url_for('login') }}">
+                    Alumni <span style="margin-left: 10px;">Network</span>
+                    <img src="{{ url_for('static', filename='images/images.jpeg') }}" alt="Custom Icon"
+                        style="width: 55px; height: 55px; margin-left: 8px; border-radius: 50%; object-fit: cover;">
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item"><a class="nav-link" style="color: #FDF5E6;"
+                                href="{{ url_for('index') }}">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" style="color: #FDF5E6;"
+                                href="{{ url_for('profile') }}">Profile</a></li>
+                        <li class="nav-item"><a class="nav-link" style="color: #FDF5E6;"
+                                href="{{ url_for('contact') }}">Contact</a></li>
+                        <form class="d-flex align-items-center">
+                            <input class="form-control me-2 rounded-full" type="search" placeholder="Search">
+                            <button class="btn btn-outline-light" type="submit"><i class="fas fa-search"></i></button>
+                        </form>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container">
+        <div class="results-header">
+            <h2><i class="fa fa-briefcase"></i> Job Opportunities</h2>
+        </div>
+
+        <!-- Search Form -->
+        <form method="POST" class="form-inline justify-content-center mb-4">
+            <input type="text" name="search_role" class="form-control mr-2" placeholder="Search by job role"
+                value="{{ search_role }}">
+            <button type="submit" class="btn btn-success">Search</button>
+        </form>
+
+        <!-- Job Results -->
+        {% if jobs %}
+        <div class="row">
+            {% for job in jobs %}
+            <div class="col-md-6">
+                <div class="job-card">
+                    <h3>{{ job.job_title }}</h3>
+                    <p><strong>Company:</strong> {{ job.company_name }}</p>
+                    <p><strong>Location:</strong> {{ job.location }}</p>
+                    <p><strong>Role:</strong> {{ job.job_role }}</p>
+                    <p><strong>Description:</strong> {{ job.description }}</p>
+                    <p><strong>Contact:</strong> {{ job.contact_email }}</p>
+                    <p><strong>Posted:</strong> {{ job.posted_date }}</p>
+                    {% if job.application_link %}
+                    <a href="{{ job.application_link }}" target="_blank" class="btn btn-primary btn-sm">Apply Now</a>
+                    {% endif %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <div class="no-results">
+            <p>No jobs found.</p>
+        </div>
+        {% endif %}
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

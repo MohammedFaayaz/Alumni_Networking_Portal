@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Events</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            background-color:#FDF5E6;
+            font-family: 'Roboto', sans-serif;
+        }
+        .container {
+            margin-top: 50px;
+            background: #FDF5E6; 
+            border-radius: 15px; 
+            padding: 20px;
+        }
+        .card {
+            border-radius: 15px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+        .card-title {
+            color: #007bff;
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <nav class="navbar navbar-expand-lg" style="background-color: #1B3B5F;">
+        <div class="container-fluid">
+            <a class="navbar-brand text-4xl font-bold" style="color: #FDF5E6; padding: 10px 20px; font-family: 'Roboto', sans-serif;" href="{{ url_for('login') }}">
+                Alumni <span style="margin-left: 10px;">Network</span>
+                <img src="{{ url_for('static', filename='images/images.jpeg') }}" alt="Custom Icon" 
+                     style="width: 55px; height: 55px; margin-left: 8px; border-radius: 50%; object-fit: cover;">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" style="color: #FDF5E6;" href="{{ url_for('index') }}">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" style="color: #FDF5E6;" href="{{ url_for('profile') }}">Profile</a></li>
+                    <li class="nav-item"><a class="nav-link" style="color: #FDF5E6;" href="{{ url_for('addevents') }}">Add Event</a></li>
+                    <li class="nav-item"><a class="nav-link" style="color: #FDF5E6;" href="{{ url_for('contact') }}">Contact</a></li>
+                    <form class="d-flex align-items-center">
+                        <input class="form-control me-2 rounded-full" type="search" placeholder="Search">
+                        <button class="btn btn-outline-light" type="submit"><i class="fas fa-search"></i></button>
+                    </form>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<div class="container">
+    <h3 class="text-center mb-4"><i class="fa fa-calendar-check"></i> Upcoming Events</h3>
+    <div class="row">
+        {% if events_list %}
+    {% for event in events_list %}
+        <div class="col-md-4">
+            <div class="card shadow mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">{{ event.event_name }}</h5>
+                    <span class="badge badge-info"><i class="fa fa-calendar"></i> {{ event.event_date }}</span>
+                    <p class="mt-2">{{ event.event_desc }}</p>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+{% else %}
+    <div class="col-12 text-center">
+        <p class="text-muted">No events found.</p>
+    </div>
+{% endif %}
+
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

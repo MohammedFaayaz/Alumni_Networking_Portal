@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <style>
+        
+    body {
+        background-color:0 0 10px rgba(50, 115, 220, 0.5);
+        background-size: cover; /* Makes the background image cover the entire viewport */
+        background-repeat: no-repeat; /* Prevents the background image from repeating */
+        font-family: 'Roboto', sans-serif;
+    }
+
+    .header {
+
+        background: url("s2.jpg")
+          no-repeat center center/cover;
+        height: 80vh;
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+      }
+
+      .header h1 {
+        font-size: 4rem;
+        font-weight: bold;
+      }
+
+
+
+    .container {
+        margin-top: 50px;
+        background: rgba(255, 255, 255, 0.8); 
+        border-radius: 15px; 
+        padding: 20px;
+    }
+
+    .results-header {
+        text-align: center;
+        margin-bottom: 30px;
+        color: #0f0f0ee7; 
+    }
+
+    .results-header h2 {
+        font-size: 2.5rem;
+        font-weight: bold;
+    }
+
+    .alumni-card {
+        background-color: white;
+        border-radius: 15px;
+        padding: 30px;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+        margin-bottom: 20px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .alumni-card:hover {
+        transform: scale(1.05);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    }
+
+    .alumni-card h3 {
+        color: #007bff;
+        font-size: 2rem;
+        margin-bottom: 15px;
+    }
+
+    .alumni-card p {
+        font-size: 1.0rem;
+        margin-bottom: 10px;
+    }
+
+    .no-results {
+        text-align: center;
+        color: #333; 
+        font-size: 2rem;
+        font-weight: bold;
+        margin-top: 30px;
+    }
+
+    .footer {
+        background-color: #343a40;;
+        color: white;
+        padding: 20px 0;
+        text-align: center;
+      }
+
+      .footer a {
+        color: #1de9b6;
+        text-decoration: none;
+      }
+
+      .footer a:hover {
+        color: #1dc4e9;
+      }
+</style>
+
+</head>
+
+<body>
+<header>
+    <nav class="navbar navbar-expand-lg  bg-#1B3B5F shadow-xl" style="background-color: #1B3B5F ;">
+      <div class="container-fluid">
+          <!-- Brand -->
+          <a class="navbar-brand text-4xl font-bold "style="color: #FDF5E6; padding: 10px 20px; font-family: 'Roboto', sans-serif;" href="{{ url_for('login') }}">   Alumni <span style="margin-left: 5px; margin-left: 10px;">Network</span> <img src="{{ url_for('static',filename='images/images.jpeg')}}" alt="Custom Icon" 
+            style="width: 55px; height: 55px; margin-left: 8px; border-radius: 50%; display: inline-block; object-fit: cover;"></a>
+  
+          <!-- Toggle button for mobile view -->
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+              aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+          </button>
+  
+          <!-- Navbar Links -->
+          <div class="collapse navbar-collapse" id="navbarNav" >
+              <ul class="navbar-nav ms-auto flex items-center space-x-8">
+                  <li class="nav-item">
+                      <a class="nav-link text-lg text-gray-600 hover:text-teal-500 transition duration-300" style="color: #FDF5E6;" href="{{  url_for('index')  }}">Home</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link text-lg text-gray-600 hover:text-teal-500 transition duration-300" style="color: #FDF5E6;"href="{{  url_for('profile')  }}">Profile</a>
+                  </li>
+                
+           
+                
+                  <li class="nav-item">
+                      <a class="nav-link text-lg text-gray-600 hover:text-teal-500 transition duration-300" style="color: #FDF5E6;"href="{{  url_for('contact')  }}">Contact</a>
+                  </li>
+                  <form class="d-flex align-items-center">
+                      <input class="form-control me-2 rounded-full" type="search" placeholder="Search" aria-label="Search" />
+                      <button class="btn btn-outline-teal-500" type="submit">
+                          <i class="fas fa-search" style="color: #FDF5E6;"></i>
+                      </button>
+                  </form>
+              </ul>
+          </div>
+      </div>
+    </nav>
+</header>
+
+
+    <div class="container" style="background-color:#ffff;">
+        <div class="results-header">
+            <h2>Search Results</h2>
+        </div>
+
+        <!-- Check if results exist -->
+        {% if alumni_results %}
+        <div class="row">
+            <!-- Loop through alumni and create a card for each -->
+            {% for alumni in alumni_results %}
+            <div class="col-md-12">
+                
+                <div class="alumni-card">
+                    <a href="https://www.linkedin.com/in/nagaharshinikk?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" style="color:blue ;text-decoration:none;">
+                        <h3 >{{ alumni.name }}</h3>
+                    </a>
+                    <p><strong>Mail Address:</strong> {{ alumni.email }}</p>
+                    <p><strong>Graduated Year:</strong> {{ alumni.grad_yr }}</p>
+                    <p><strong>Company:</strong> {{ alumni.company }}</p>
+                    <p><strong>Job Title:</strong> {{ alumni.job_title }}</p>
+                    <p><strong>Location:</strong> {{ alumni.location }}</p>
+                </div>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <!-- No results message -->
+        <div class="no-results">
+            <p>No alumni found matching the search criteria.</p>
+        </div>
+        {% endif %}
+    </div>
+
+    
+
+    <!-- Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

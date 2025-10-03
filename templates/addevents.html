@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Event</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: #FDF5E6;
+        }
+        .card {
+            border-radius: 15px;
+            background-color: white;
+        }
+        .btn-primary {
+            background-color: #1B3B5F;
+            border: none;
+        }
+        .btn-primary:hover {
+            background-color: #16324a;
+        }
+        label {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<header>
+    <nav class="navbar navbar-expand-lg" style="background-color: #1B3B5F;">
+        <div class="container-fluid">
+            <!-- Brand -->
+            <a class="navbar-brand" style="color: #FDF5E6; padding: 10px 20px; font-family: 'Roboto', sans-serif;"
+               href="{{ url_for('login') }}">
+                Alumni <span style="margin-left: 5px;">Network</span>
+                <img src="{{ url_for('static', filename='images/images.jpeg') }}" alt="Custom Icon" 
+                     style="width: 55px; height: 55px; margin-left: 8px; border-radius: 50%; object-fit: cover;">
+            </a>
+
+            <!-- Mobile toggle -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Links -->
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" style="color: #FDF5E6;" href="{{ url_for('index') }}">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" style="color: #FDF5E6;" href="{{ url_for('profile') }}">Profile</a></li>
+                    <li class="nav-item"><a class="nav-link" style="color: #FDF5E6;" href="{{ url_for('contact') }}">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<!-- Add Event Form -->
+<div class="container mt-5">
+    <div class="card shadow p-4">
+        <h3 class="text-center mb-4" style="color: #1B3B5F;"><i class="fa fa-calendar-plus"></i> Add New Event</h3>
+        <form method="POST" action="/addevents">
+            <div class="form-group">
+                <label><i class="fa fa-heading"></i> Event Name</label>
+                <input type="text" class="form-control" name="event_name" placeholder="Enter event name" required>
+            </div>
+            <div class="form-group">
+                <label><i class="fa fa-calendar"></i> Event Date</label>
+                <input type="date" class="form-control" name="event_date" required>
+            </div>
+            <div class="form-group">
+                <label><i class="fa fa-align-left"></i> Event Description</label>
+                <textarea class="form-control" name="event_desc" rows="4" placeholder="Enter event details" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block"><i class="fa fa-plus-circle"></i> Add Event</button>
+        </form>
+    </div>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>

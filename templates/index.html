@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Alumni Networking Platform</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+
+    <style>
+      body {
+        font-family: "Poppins", sans-serif;
+
+        background-color: #FDF5E6;
+      }
+
+      /* Header Section */
+      .header {
+        background: url("s2.jpg")
+          no-repeat center center/cover;
+        height: 80vh;
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+      }
+
+      .header h1 {
+        font-size: 4rem;
+        font-weight: bold;
+      }
+
+      /* Section Styling */
+      .section-title {
+
+        font-size: 2.5rem;
+        margin-bottom: 20px;
+        text-align: center;
+        font-weight: bold;
+        color:#F1F2F6;
+
+      }
+      .section-titleprof {
+
+       font-size: 2.5rem;
+       margin-bottom: 20px;
+       text-align: center;
+      font-weight: bold;
+      color: #F1F2F6;
+;
+
+}
+      .card {
+        margin: 20px 0;
+      }
+
+
+      .section-bg {
+
+        background-color: #1B3B5F;
+        padding: 60px 0;
+      }
+      .section-bgnew {
+
+        background: linear-gradient(to bottom, #FDF5E6, #1B3B5F);
+        padding: 60px 0;
+      }      
+
+      /* Footer Section */
+      .footer {
+        background-color: #343a40;
+        color: white;
+        padding: 20px 0;
+        text-align: center;
+      }
+
+      .footer a {
+        color: #1de9b6;
+        text-decoration: none;
+      }
+
+      .footer a:hover {
+        color: #1dc4e9;
+      }
+
+      .btn-primary {
+        background-color:  #1dc4e9;
+        border: none;
+        padding: 10px 30px;
+        font-size: 18px;
+        border-radius: 30px;
+        transition: all 0.3s ease;
+      }
+
+      .btn-primary:hover {
+        background-color: #1de9b6; 
+        transform: scale(1.05); 
+      }
+      
+      .profile-icon {
+        font-size: 50px;
+        color:  #1dc4e9;
+        margin-bottom: 20px;
+      }
+
+      .network-icon {
+        font-size: 50px;
+        color: #1dc4e9;
+        margin-bottom: 20px;
+      }
+
+    </style>
+  </head>
+  <body>
+    <!-- Header Section -->
+    <header>
+      <nav class="navbar navbar-expand-lg  bg-#1B3F5F shadow-xl" style="background-color: #1B3B5F ;">
+    <div class="container-fluid">
+        
+        <a class="navbar-brand text-4xl font-bold "style="color: #FDF5E6; padding: 10px 20px; font-family: 'Roboto', sans-serif;" href="{{ url_for('login') }}">   Alumni <span style="margin-left: 5px; margin-left: 10px;">Network</span> <img src="{{ url_for('static',filename='images/images.jpeg')}}" alt="Custom Icon" 
+          style="width: 55px; height: 55px; margin-left: 8px; border-radius: 50%; display: inline-block; object-fit: cover;"></a>
+
+      
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Navbar Links -->
+        <div class="collapse navbar-collapse" id="navbarNav" >
+            <ul class="navbar-nav ms-auto flex items-center space-x-8">
+                <li class="nav-item">
+                    <a class="nav-link text-lg text-gray-600 hover:text-teal-500 transition duration-300" style="color: #FDF5E6;" href="index.html">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-lg text-gray-600 hover:text-teal-500 transition duration-300" style="color: #FDF5E6;" href="profile.html">Profile</a>
+                </li>
+                
+                <li class="nav-item">
+                    <a class="nav-link text-lg text-gray-600 hover:text-teal-500 transition duration-300" style="color: #FDF5E6;" href="contact.html">Contact</a>
+                </li>
+                <form class="d-flex align-items-center">
+                    <input class="form-control me-2 rounded-full" type="search" placeholder="Search" aria-label="Search" />
+                    <button class="btn btn-outline-teal-500" type="submit">
+                        <i class="fas fa-search" style="color: #FDF5E6;"></i>
+                    </button>
+                </form>
+            </ul>
+        </div>
+    </div>
+</nav>
+  </header>
+<a href="/chatbot">
+    <button style="
+        padding: 12px 25px; 
+        background-color: #6a92bd; 
+        color: white; 
+        border: none; 
+        border-radius: 8px; 
+        font-size: 16px; 
+        cursor: pointer;
+        transition: 0.3s;
+        justify-content: center;
+        align-items: center;
+    " 
+    onmouseover="this.style.backgroundColor='#0056b3'" 
+    onmouseout="this.style.backgroundColor='#007bff'">
+        Chat with Alumni Bot
+    </button>
+</a>
+
+
+<div id="carouselExample" class="carousel slide" data-bs-ride="carousel" data-bs-interval="1500" style="max-width: 1000px; margin: 50px auto; margin-top: 70px; border-radius: 30px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); overflow: hidden;">
+
+
+  <ol class="carousel-indicators">
+    <li data-bs-target="#carouselExample" data-bs-slide-to="0" class="active"></li>
+    <li data-bs-target="#carouselExample" data-bs-slide-to="1"></li>
+    <li data-bs-target="#carouselExample" data-bs-slide-to="2"></li>
+  </ol>
+
+  <!-- Carousel Inner -->
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="{{ url_for('static',filename='images/earth.jpeg')}}" class="d-block w-100" style="height: 400px; object-fit: fill;" alt="Image 1">
+      <div class="carousel-caption d-none d-md-block">
+        <h5>Welcome to the Alumni Networking Platform</h5>
+        <p>Fostering communication and connection among alumni.</p>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img src="{{ url_for('static',filename='images/home.jpeg')}}"class="d-block w-100" style="height: 400px; object-fit: fill;"alt="Image 2">
+      <div class="carousel-caption d-none d-md-block">
+        <h5 style="color: black;">Connect with Alumni</h5>
+        <p style="color: black;">Leverage your network for opportunities.</p>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img src="{{ url_for('static',filename='images/world.jpeg')}}" class="d-block w-100" style="height: 400px; object-fit: fill;" alt="Image 3">
+      <div class="carousel-caption d-none d-md-block">
+        <h5 style="color: black;">Professional Growth</h5>
+        <p style="color: black;">Join events and expand your career prospects.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Carousel Controls -->
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+
+<!-- CSS for Shadow and Border -->
+<style>
+  #carouselExample .carousel-inner {
+    border-radius: 15px;
+  }
+
+  .carousel-control-prev-icon, .carousel-control-next-icon {
+    filter: drop-shadow(2px 2px 5px rgba(0, 0, 0, 0.2));
+  }
+</style>
+
+
+    <!-- Profile Management Section -->
+    <section id="profile-management" class="section-bg">
+      <div class="container rounded-lg">
+        <h2 class="section-title" >Profile Management</h2>
+        <div class="row d-flex g-3" >
+          <div class="col-md-6" >
+            <div class="card shadow-sm" style="background: #FFFFF0" >
+              <div class="card-body text-center">
+                <i class="fas fa-user profile-icon"></i>
+                <h5 class="card-title">Create Your Profile</h5>
+                <p class="card-text">
+                  Easily register and create your alumni profile. Share your
+                  academic and professional details.
+                </p>
+                <a href="{{  url_for('login')   }}" class="btn btn-primary">Register Now</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="card shadow-sm" style="background: #FFFFF0">
+              <div class="card-body text-center">
+                <i class="fas fa-users network-icon" style="font-size: 3rem; color: #1dc4e9;"></i>
+                <h5 class="card-title">Find Fellow Alumni</h5>
+                <p class="card-text">
+                  Search for alumni based on graduation year, profession,
+                  location, and more.
+                </p>
+                <a href="{{  url_for('searchalumini')   }}" class="btn btn-primary">Search Alumni</a>
+              </div>
+            </div>
+          </div>
+         
+        </div>
+      </div>
+    </section>
+
+<!-- Networking Section -->
+<section id="networking" class="section-bg">
+    <div class="container rounded-lg">
+      <h2 class="section-title">Networking</h2>
+      <div class="row d-flex g-3">
+        <div class="col-md-6">
+          <div class="card shadow-sm" style="background: #FFFFF0">
+            <div class="card-body text-center">
+              <i class="fas fa-edit profile-icon"></i>
+              <h5 class="card-title">Update Your Profile</h5>
+              <p class="card-text">
+                Keep your profile up to date with the latest information on
+                your career and achievements.
+              </p>
+              <a href="{{  url_for('login')   }}" class="btn btn-primary">Update Profile</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="card shadow-sm" style="background: #FFFFF0">
+            <div class="card-body text-center">
+              <i class="fas fa-envelope" style="font-size: 3rem; color: #1dc4e9;"></i>
+              <h5 class="card-title">Contact Fellow Alumni</h5>
+              <p class="card-text">
+                Reach out to alumni via direct messaging and build your professional network.
+              </p>
+              <a href="{{  url_for('contact')   }}" class="btn btn-primary">Contact Us</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>    
+  </section>
+<!-- About Us Section -->
+<section id="about-us" class="section-bg">
+  <div class="container rounded-lg" style="max-width: 1350px; background: linear-gradient(to bottom, #FDF5E6, #1B3B5F)">
+    <h2 class="section-title" style="color: #1B3B5F;">About Us</h2>
+    <div class="row d-flex">
+      <div class="col-md-12">
+        <div class="card shadow-sm" style="background: #FFFFF0;">
+          <div class="card-body text-center">
+            <h5 class="card-title" style="font-size: 3;">Who We Are</h5>
+            
+            <p style="color: #1B3B5F; font-size: 1.2rem; line-height: 1.6;">
+              Welcome to the <strong>Thigarajar College Alumni Networking Portal</strong> – your gateway to reconnecting with fellow alumni, exploring new opportunities, and fostering lifelong connections. 
+              <br><br>
+              Our platform is designed to bridge the gap between past and present students, creating a dynamic space where knowledge, experience, and opportunities converge. Whether you're seeking to expand your professional network, discover new career paths, or simply stay in touch with your peers, we’re here to support you.
+              <br><br>
+              Join us and be part of a community that’s committed to personal growth, professional development, and giving back. Together, we can unlock new opportunities and pave the way for a brighter future.
+          </p>
+          
+            
+           
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+    <!-- Footer Section -->
+    <footer class="footer">
+      <div class="container">
+        <p>
+          &copy; 2024 Alumni Networking Platform. All Rights Reserved. |
+          <a href="#">Privacy Policy</a>
+        </p>
+        <a href="#" class="icons"><i class="bx bxl-google"></i></a>
+        <a href="#" class="icons"><i class="bx bxl-facebook"></i></a>
+        <a href="#" class="icons"><i class="bx bxl-github"></i></a>
+        <a href="#" class="icons"><i class="bx bxl-linkedin"></i></a>
+      </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script
+      src="https://kit.fontawesome.com/a076d05399.js"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
